@@ -1,13 +1,20 @@
+// Vertices of the pentagon
 PVector[] vertices;
+// Point jumping around the pentagon
 PVector rabbit;
+// Previously chosen vertex
 PVector previous;
+// Current vertex
 PVector vertex;
-  boolean first = true;
+// First time going through the loop?
+boolean first = true;
 
 void setup(){
   size(1000, 1000);
   vertices = new PVector[5];
+  // Start at the center
   rabbit = new PVector(width/2, height/2);
+  // Calculate the vertices of the pentagon
   pentagon(width/2, height/2, height/1.8);
   stroke(0,50);
   
@@ -19,6 +26,7 @@ void setup(){
 }
 
 void draw(){
+  // Jump half the distance towards a randomly chosen vertex, but the currently chosen vertex cannot be the same as the previously chosen vertex.
   for(int i=0; i<10000; i++){
     vertex = vertices[int(random(0, 5))].copy();
     if(!first){
@@ -49,6 +57,7 @@ void pentagon(float x, float y, float r){
   
 }
 
+// Save png when mouse is pressed
 void mousePressed(){
-  save("chaos10.png");
+  save("chaos.png");
 }
