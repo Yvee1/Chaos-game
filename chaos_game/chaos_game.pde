@@ -9,19 +9,21 @@ PVector vertex;
 // First time going through the loop?
 boolean first = true;
 
+PGraphics big;
+
 void setup(){
-  size(1000, 1000);
+  big = createGraphics(10000, 10000);
+  big.beginDraw();
   vertices = new PVector[5];
   // Start at the center
-  rabbit = new PVector(width/2, height/2);
+  rabbit = new PVector(big.width/2, big.height/2);
   // Calculate the vertices of the pentagon
-  pentagon(width/2, height/2, height/1.8);
-  stroke(0,50);
+  pentagon(big.width/2, big.height/2, big.height/1.8);
+  big.stroke(0,50);
   
   previous = new PVector(0, 0);
   
-  smooth();
-  background(255);
+  big.background(255);
   
 }
 
@@ -57,7 +59,8 @@ void pentagon(float x, float y, float r){
   
 }
 
-// Save png when mouse is pressed
+// Save tif when mouse is pressed
 void mousePressed(){
-  save("chaos.png");
+  big.save("big.tif");
+  println("finished");
 }
